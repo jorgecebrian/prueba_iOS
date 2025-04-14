@@ -12,6 +12,7 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private       { Private declarations }
   public        { Public declarations }
+    procedure IniciaDatabase;
     function  errorSql(): String;
     function  executeSql(cSQL: String): Boolean;
     function  selectSql(cSQL: String): String;
@@ -31,6 +32,23 @@ uses
 
 procedure TDMod.DataModuleCreate(Sender: TObject);
 begin     vUltimoError := '';                                         end;
+
+procedure TDMod.IniciaDatabase;
+var
+  DatabasePath: String;
+begin
+  try
+    FDConnection1.DriverName := 'SQLite';
+    FDConnection1.Params.Database := 'database.sqlite';
+    FDConnection1.Params.UserName := '';
+    FDConnection1.Params.Password := '';
+    FDConnection1.Connected := True;
+    FDConnection1.ExecSQL('CREATE TABLE IF NOT EXISTS MiTabla (ID INTEGER PRIMARY KEY, Nombre TEXT);');
+  except
+    on E: Exception do
+      vUltimoError := 'Error al inicializar la base de datos: ' + E.Message;
+  end;
+end;
 
 function  TDMod.errorSql(): String;
 begin     Result := vUltimoError;                                     end;

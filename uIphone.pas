@@ -9,7 +9,10 @@ type
   TForm1 = class(TForm)
     Panel1: TPanel;
     WebBrowser1: TWebBrowser;
+    procedure FormActivate(Sender: TObject);
   private       { Private declarations }
+    procedure ValidaYPreparaWebApp;
+    procedure CargaPagInicial(WebBrowser: TWebBrowser);
   public        { Public declarations }
     function  MND_Info_Device: string;
     procedure MND_LoadURLFilePath(const cNombreArchivo,cPathInterno: String);
@@ -180,6 +183,40 @@ begin
     on E: Exception do
       ShowMessage('Error al guardar archivo: ' + E.Message);
   end;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  WebBrowser1.Align := TAlignLayout.Client;
+  WebBrowser1.EnableCaching := True;
+  uDm.DMod.IniciaDatabase;
+  CargaPagInicial(WebBrowser1);
+
+end;
+
+procedure TForm1.ValidaYPreparaWebApp;
+var       vPathWWW, vPathWWWLogin: String;
+begin
+  vPathWWW      := TPath.Combine(TPath.GetDocumentsPath, 'www');
+  vPathWWWLogin := TPath.Combine(TPath.GetDocumentsPath, 'wwwLogin');
+  if not TFile.Exists(TPath.Combine(vPathWWW, 'Inici.html')) then
+    try
+      TDirectory.Delete(vPathWWW, True);
+      TDirectory.Copy(vPathWWWLogin, vPathWWW);
+      ShowMessage('WebApp inicializada correctamente.');
+    except
+      on E: Exception do
+        ShowMessage('Error al inicializar WebApp: ' + E.Message);
+    end;
+end;
+
+procedure TForm1.CargaPagInicial(WebBrowser: TWebBrowser);
+var       vFile: String;
+begin
+  vFile := TPath.Combine(TPath.GetDocumentsPath, 'www/Inici.html');
+  if TFile.Exists(vFile)
+    then WebBrowser.Navigate('file://' + vFile)
+    else ShowMessage('La página inicial no existe: ' + vFile);
 end;
 
 end.
