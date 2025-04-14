@@ -1,0 +1,18 @@
+inherited f_iPhone47in: Tf_iPhone47in
+  Caption = 'fiPhone'
+  ClientHeight = 647
+  ClientWidth = 375
+  DesignerMasterStyle = 0
+  inherited Panel1: TPanel
+    Align = Client
+    Size.Width = 375.000000000000000000
+    Size.Height = 647.000000000000000000
+    Size.PlatformDefault = False
+    inherited WebBrowser1: TWebBrowser
+      Align = Client
+      Size.Width = 375.000000000000000000
+      Size.Height = 647.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end

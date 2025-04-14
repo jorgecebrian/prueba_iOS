@@ -1,0 +1,21 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Position.X = 96.000000000000000000
+    Position.Y = 168.000000000000000000
+    TabOrder = 0
+    object WebBrowser1: TWebBrowser
+      Position.X = 32.000000000000000000
+      Position.Y = 32.000000000000000000
+      WindowsEngine = IEOnly
+    end
+  end
+end
