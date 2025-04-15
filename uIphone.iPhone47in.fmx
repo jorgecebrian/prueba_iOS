@@ -7,13 +7,29 @@ inherited f_iPhone47in: Tf_iPhone47in
   inherited Panel1: TPanel
     Align = Client
     Size.Width = 375.000000000000000000
-    Size.Height = 647.000000000000000000
+    Size.Height = 582.000000000000000000
     Size.PlatformDefault = False
     inherited WebBrowser1: TWebBrowser
       Align = Client
       Size.Width = 375.000000000000000000
-      Size.Height = 647.000000000000000000
+      Size.Height = 582.000000000000000000
       Size.PlatformDefault = False
+    end
+  end
+  inherited Panel2: TPanel
+    Align = Top
+    Size.Width = 375.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    inherited Button1: TButton
+      Align = Left
+      Cursor = crHandPoint
+      Hint = 'Saluda'
+      Size.Width = 73.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Hola'
+      OnClick = Button1Click
     end
   end
 end

@@ -9,7 +9,10 @@ type
   TForm1 = class(TForm)
     Panel1: TPanel;
     WebBrowser1: TWebBrowser;
+    Panel2: TPanel;
+    Button1: TButton;
     procedure FormActivate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private       { Private declarations }
     procedure ValidaYPreparaWebApp;
     procedure CargaPagInicial(WebBrowser: TWebBrowser);
@@ -187,11 +190,11 @@ end;
 
 procedure TForm1.FormActivate(Sender: TObject);
 begin
+  uDm.DMod.IniciaDatabase;
   WebBrowser1.Align := TAlignLayout.Client;
   WebBrowser1.EnableCaching := True;
-  uDm.DMod.IniciaDatabase;
+  ValidaYPreparaWebApp;
   CargaPagInicial(WebBrowser1);
-
 end;
 
 procedure TForm1.ValidaYPreparaWebApp;
@@ -209,6 +212,9 @@ begin
         ShowMessage('Error al inicializar WebApp: ' + E.Message);
     end;
 end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin     ShowMessage(' H o l a ');                                   end;
 
 procedure TForm1.CargaPagInicial(WebBrowser: TWebBrowser);
 var       vFile: String;
